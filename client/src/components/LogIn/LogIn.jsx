@@ -2,6 +2,7 @@ import React from "react";
 import { GoogleLogin } from "react-google-login";
 import { useEffect } from "react";
 import { gapi } from "gapi-script";
+import axios from "axios";
 const clientId =
   "1002780695209-kbg98839atoldrmcsbmtaqbj22s2bal2.apps.googleusercontent.com";
 
@@ -16,7 +17,13 @@ export const LogIn = () => {
   });
 
   const onSuccess = (res) => {
-    console.log("Login success !Current user: ", res.profileObj);
+    const jsonProfile = JSON.stringify(res.profileObj);
+    console.log(jsonProfile);
+    axios({
+    method: 'post',
+    url: 'http://127.0.0.1:8000/api/user/',
+    data: jsonProfile,
+    })
   };
   const onFailure = (res) => {
     console.log("LOGIN FAILED! res ", res);
