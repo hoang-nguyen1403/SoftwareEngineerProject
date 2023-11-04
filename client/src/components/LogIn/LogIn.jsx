@@ -28,7 +28,7 @@ export const LogIn = () => {
           <div className="col">
             <div className="login-page__left-col">
               <div className="login-page__left-col__left-contain">
-                <p className='title'>Hệ thống in tài liệu Đại Học Bách Khoa - TPHCM</p>
+                <p className='title'>Hệ thống in tài liệu <br/>Đại Học Bách Khoa - TPHCM</p>
                 <a href="#" className="info-btn btn btn-primary">
                   Thông tin chi tiết
                 </a>
@@ -37,12 +37,13 @@ export const LogIn = () => {
           </div>
           <div className="col">
             <div className="login-page__right-col">
-              <div>
-                <p>Xin chào!</p>
-                <p>Đăng nhập để bắt đầu</p>
+              <div className="wrapper">
+              <div className='title'>
+                <p className='title-header'>Xin chào!</p>
+                <p className='title-support'>Đăng nhập để bắt đầu</p>
               </div>
 
-              <div id="signInButton" className="">
+              <div id="signInButton" >
                 <GoogleLogin
                   clientId={clientId}
                   buttonText="Đăng nhập bằng tài khoản HCMUT"
@@ -50,8 +51,12 @@ export const LogIn = () => {
                   onFailure={onFailure}
                   cookiePolicy={"single_host_origin"}
                   isSignedIn={true}
+                  className="signInButton"
+                  theme="dark"
                 ></GoogleLogin>
               </div>
+              </div>
+              
             </div>
           </div>
         </div>

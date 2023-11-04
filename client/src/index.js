@@ -8,12 +8,6 @@ import { Routes, Route } from "react-router-dom";
 import "./assets/scss/style.scss";
 import { createBrowserHistory } from "history";
 import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
-
-
-import { useEffect } from 'react';
-import {gapi} from "gapi-script"
-const clientID = "1002780695209-kbg98839atoldrmcsbmtaqbj22s2bal2.apps.googleusercontent.com"
-
 export const history = createBrowserHistory({ window });
 
 
@@ -25,11 +19,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <HistoryRouter history={history}>
     <Routes>
-      <Route path='add' element={<App></App>}> 
-        {/* <Route path="" element={<Home></Home>}></Route> */}
+      <Route path='' element={<App></App>}> 
+        <Route path="" element={<Home></Home>}></Route>
         
       </Route>
-      <Route path="" element={<LogIn></LogIn>}></Route>
+      <Route path="login" element={<LogIn></LogIn>}></Route>
     </Routes>
   </HistoryRouter>
 );
