@@ -14,16 +14,17 @@ export const LogIn = () => {
         scope: "",
       });
     }
+    gapi.load('client:auth2', start)
   });
-
+  
   const onSuccess = (res) => {
     const jsonProfile = JSON.stringify(res.profileObj);
     console.log(jsonProfile);
-    axios({
-    method: 'post',
-    url: 'http://127.0.0.1:8000/api/user/',
-    data: jsonProfile,
-    })
+    // axios({
+    // method: 'post',
+    // url: 'http://127.0.0.1:8000/api/user/',
+    // data: jsonProfile,
+    // })
   };
   const onFailure = (res) => {
     console.log("LOGIN FAILED! res ", res);
