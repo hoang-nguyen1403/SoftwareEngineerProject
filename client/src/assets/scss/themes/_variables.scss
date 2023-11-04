@@ -1,0 +1,31 @@
+// color
+
+// font weight
+$thin :100;
+$regular :400;
+$bold :600;
+
+// Font size
+
+$xxsmall: 16px;
+$xsmall: 18px;
+$small: 20px;
+$medium: 24px;
+$large: 29px;
+$midlarge: 40px;
+$xlarge: 48px;
+
+$infor-Btn-color : #0575E6;
+
+
+@mixin getBackground(){
+    background: rgb(5,117,230);
+    background: linear-gradient(180deg, rgba(5,117,230,1) 0%, rgba(2,41,138,1) 71%, rgba(2,27,121,1) 100%);
+}
+
+@mixin alignItemtoCenter(){
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+}

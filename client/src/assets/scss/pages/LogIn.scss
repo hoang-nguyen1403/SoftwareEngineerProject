@@ -1,0 +1,45 @@
+@import "../base/base";
+@import "../themes/variables";
+
+.login-page{
+    @include getBackground();
+    // -ms-transform: rotate(-90deg); /* IE 9 */
+    // -webkit-transform: rotate(-180deg); /* Safari */
+    // transform: rotate(-9deg);
+    // width: 100%;
+    height: 100vh;
+    .container{
+        height: 100%;
+    }
+    .row{
+        height: 100%;
+    }
+    .login-page__left-col{
+        width: 100%;
+        height: 100%;
+        @include alignItemtoCenter();
+        // justify-content: space-between;
+        .title{
+            font-size: $midlarge;
+            font-weight: $bold;
+            padding: 50px;
+            color: white;
+            margin: 0;
+        }
+        .info-btn{
+            margin: 0px 50px 0px 50px;
+            border-radius: 20px;
+            letter-spacing: 2px;
+            width: 30%;
+
+            background-color: $infor-Btn-color;
+        }
+    }
+    .login-page__right-col{
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        @include alignItemtoCenter();
+        // justify-content: space-between;
+    }
+}
