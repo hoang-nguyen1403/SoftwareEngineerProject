@@ -1,30 +1,20 @@
 import React from "react";
 import { GoogleLogin } from "react-google-login";
-import { useEffect } from "react";
-import { gapi } from "gapi-script";
 import axios from "axios";
-const clientId =
-  "1002780695209-kbg98839atoldrmcsbmtaqbj22s2bal2.apps.googleusercontent.com";
+import { clientId, BACKEND_LOGIN_URL } from "../../utils/tools";
+import { history } from "../../index";
 
 export const LogIn = () => {
-  useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId: clientId,
-        scope: "",
-      });
-    }
-    gapi.load('client:auth2', start)
-  });
   
   const onSuccess = (res) => {
     const jsonProfile = JSON.stringify(res.profileObj);
     console.log(jsonProfile);
     // axios({
     // method: 'post',
-    // url: 'http://127.0.0.1:8000/api/user/',
+    // url: BACKEND_LOGIN_URL,
     // data: jsonProfile,
     // })
+    history.push("/")
   };
   const onFailure = (res) => {
     console.log("LOGIN FAILED! res ", res);
@@ -58,7 +48,7 @@ export const LogIn = () => {
                   onSuccess={onSuccess}
                   onFailure={onFailure}
                   cookiePolicy={"single_host_origin"}
-                  isSignedIn={true}
+                  isSignedIn={false}
                   className="signInButton"
                   theme="dark"
                 ></GoogleLogin>
