@@ -5,7 +5,7 @@ from printingRestFullAPI.models import *
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
-        fields = '__all__'
+        fields = ["email", "googleId"]
 
 
 class PrintingHistorySerializer(serializers.ModelSerializer):

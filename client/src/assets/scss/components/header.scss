@@ -1,0 +1,17 @@
+.header{
+    .navigation_bar{
+        height: 77px;
+        background-color: white;
+        color: black;
+        .container{
+            justify-content: space-between;
+        }
+        .logo_wrapper{
+            display: flex;
+            // margin-right: 200px;
+            .logo{
+               width: calc(77px - (0.25rem * 2));
+            }
+        }
+    }
+}

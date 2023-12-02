@@ -52,7 +52,7 @@ export const {setCookie, getCookie,setStore, getStore, setStoreJson, getStoreJso
 
 
 const BACKEND_DOMAIN = "ttp://127.0.0.1:8000/api/"
-export const BACKEND_LOGIN_URL = "ttp://127.0.0.1:8000/user/login/"
+export const BACKEND_LOGIN_URL = "http://127.0.0.1:8000/user/login/"
 
 export const http = axios.create({
     baseURL: BACKEND_DOMAIN, timeout:30000

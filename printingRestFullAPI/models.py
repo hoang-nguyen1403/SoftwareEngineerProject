@@ -1,14 +1,16 @@
 from django.db import models
 # Create your models here.
+from django.conf import settings
 
 
 class UserModel(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     email = models.CharField(max_length=250)
     familyName = models.CharField(max_length=250)
     givenName = models.CharField(max_length=250)
     googleId = models.CharField(max_length=250)
     imageUrl = models.CharField(max_length=250)
-    name = models.CharField(max_length=250, default="a")
+    name = models.CharField(max_length=250, default="name")
 
 
 class PrintingHistory(models.Model):
@@ -31,6 +33,7 @@ class PrintingHistory(models.Model):
         choices=CHOICES,
         default='option1'  # Set the default option
     )
+
 
 class RemainingPages(models.Model):
     googleId = models.CharField(max_length=250)

@@ -1,11 +1,15 @@
 import './App.css';
 import { Outlet } from 'react-router';
-import { SideBar } from './assets/scss/components/SideBar/SideBar';
+import { SideBar } from './components/SideBar/SideBar';
 function App() {
   return (
-    <div className="App">
-      <SideBar></SideBar>
-      <Outlet></Outlet>
+    <div className="App ">
+      <div className="container">
+        <div className="wrapper">
+        <SideBar/>
+        <Outlet/>
+        </div>        
+      </div>
     </div>
   );
 }

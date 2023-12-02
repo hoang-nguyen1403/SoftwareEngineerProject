@@ -63,11 +63,12 @@ INSTALLED_APPS = [    "django.contrib.auth",
     'rest_framework',
     "printingRestFullAPI.apps.FarmrestfullapiConfig",
     # set up scss
-    'sass_processor',
+    # 'sass_processor',
     # set up current framework
     "django.contrib.admin",
-    "compressor",
-    "corsheaders"
+    # "compressor",
+    # "corsheaders",
+    'rest_framework.authtoken'
 ]
 
 STATICFILES_FINDERS = [
@@ -80,9 +81,15 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 REST_FRAMEWORK = {
+'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+
 'DEFAULT_PERMISSION_CLASSES': [
-'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-]
+    'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
 }
 
 MIDDLEWARE = [
@@ -167,9 +174,12 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'nguyenxuanhoang1403@gmail.com'
-EMAIL_HOST_PASSWORD = 'nbldhvuaxjvpxjqk'
-EMAIL_PORT = 587
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'nguyenxuanhoang1403@gmail.com'
+# EMAIL_HOST_PASSWORD = 'nbldhvuaxjvpxjqk'
+# EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 APPEND_SLASH = False
+CSRF_COOKIE_SECURE = False
+
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from "./App";
-import { Home } from './components/Home/Home';
-import { LogIn } from './components/LogIn/LogIn';
+import { Home } from './pages/Home/Home';
+import { LogIn } from './pages/LogIn/LogIn';
 import { Routes, Route } from "react-router-dom";
 
 import "./assets/scss/style.scss";
