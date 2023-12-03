@@ -51,9 +51,25 @@ export const config = {
 export const {setCookie, getCookie,setStore, getStore, setStoreJson, getStoreJson, ACCESS_TOKEN, USER_LOGIN} = config;
 
 
-const BACKEND_DOMAIN = "ttp://127.0.0.1:8000/api/"
+const BACKEND_DOMAIN = "http://127.0.0.1:8000/api"
 export const BACKEND_LOGIN_URL = "http://127.0.0.1:8000/user/login/"
 
 export const http = axios.create({
     baseURL: BACKEND_DOMAIN, timeout:30000
 })
+
+http.interceptors.response.use(
+    response => {
+        return response
+      }, err=>{
+          if(err.response.status === 400 || err.response.status === 404 ){
+              history.push('/')
+              return Promise.reject(err)
+          } 
+          if(err.response.status === 401 || err.response.status === 403 ){
+              alert('Token ko hop le! vui long dang nhap lai')
+              history.push('/login')
+              return Promise.reject(err)
+          } 
+      }
+)

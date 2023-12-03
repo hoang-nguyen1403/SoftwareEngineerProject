@@ -1,0 +1,82 @@
+@import "../base/base";
+@import "../themes/variables";
+.App{
+    @include getBackground();
+    width: 100%;
+    height: 100vh;
+    .wrapper{
+        display: flex;
+        
+        .printting{
+            width: 100%;
+            background-color: white;    
+            height: 100vh;
+            .tilte{
+                font-size: $xlarge;
+                padding: 20px;
+                margin-left: 20px;
+            }
+            .row{
+                .col-6{
+                    .printting_item_wrapper{
+                        border: 1px solid black;
+                        border-radius: 10px;
+                        padding: 20px;
+                        transition: all 0.5s linear;
+                        margin-top: 40px;
+                        .printting_item{
+                            display: flex;
+                            // justify-content: center;
+                            
+                            .left_item{
+                                width: 80px;
+                                i{
+                                    font-size: 80px;
+
+                                }
+                            }
+                            .right_item{
+                                padding-left: 40px;
+                                .tilte{
+                                    font-size: $medium;
+                                    font-weight: $bold;
+
+                                }
+                                a{
+                                    color: black;
+                                    text-decoration: none;
+                                    font-size: $medium;
+                                    font-weight: $bold;
+                                    &:hover{
+                                        color: white;
+                                    }
+                                }
+                            }
+                        }
+                        &:hover{
+                            transform: translateY(-20px);
+                            background-color: black;
+                            color: white;
+                            .printting_item{
+                                .right_item{
+                                    a{
+                                        color: white;
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+                
+            }
+            
+            
+        }
+
+    }
+    // .sideBar{
+    //     width: 30%;
+    // }
+    
+}

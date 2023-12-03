@@ -24,8 +24,13 @@ $infor-Btn-color : #0575E6;
 }
 
 @mixin alignItemtoCenter(){
-    display: flex;
+        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+}
+@mixin includeTitle(){
+    font-size: $xlarge;
+    padding: 20px;
+    margin-left: 20px;
 }

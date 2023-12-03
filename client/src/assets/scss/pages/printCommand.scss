@@ -1,0 +1,29 @@
+@import "../base/base";
+@import "../themes/variables";
+
+.App{
+    @include getBackground();
+    width: 100%;
+    height: 100vh;
+    .wrapper{
+        display: flex;
+        
+        .printCommand{
+            width: 100%;
+            background-color: white;    
+            height: 100vh;
+            .title{
+                @include includeTitle();
+            }
+            .submitPrinting{
+                margin: 20px;
+                padding: 20px 80px;
+                border: 4px solid grey;
+                border-radius: 10px;
+            
+            }
+        }
+
+    }
+    
+}

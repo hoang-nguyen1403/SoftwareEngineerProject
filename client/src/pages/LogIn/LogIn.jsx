@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { GoogleLogin } from "react-google-login";
-import axios from "axios";
-import { clientId, BACKEND_LOGIN_URL } from "../../utils/tools";
-import { history } from "../../index";
+import { clientId } from "../../utils/tools";
 import { gapi } from "gapi-script";
 // import env from 'react-dotenv';
-import { http } from "../../utils/tools";
 import { Header } from "../../components/Header/Header";
+import {useDispatch} from "react-redux"
+import { logInAPI } from "../../redux/reducers/userReducer";
 
 export const LogIn = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
     function start() {
       gapi.client.init({
@@ -24,20 +24,8 @@ export const LogIn = () => {
     const jsonProfile = JSON.stringify(res.profileObj);
     const { email, googleId } = profileObj;
     const userLogin = { email, googleId };
-    console.log(jsonProfile);
-    console.log(profileObj.googleId);
-    console.log(userLogin);
+    dispatch(logInAPI(userLogin));
 
-    axios
-      .post(`http://127.0.0.1:8000/api/user/${googleId}/login/`, userLogin)
-      .then((response) => {
-        // Handle the success response
-        console.log("Response:", response.data);
-      })
-      .catch((error) => {
-        // Handle the error
-        console.error("Error:", error);
-      });
   };
   const onFailure = (res) => {
     console.log("LOGIN FAILED! res ", res);
