@@ -1,3 +1,4 @@
+import json
 from rest_framework.decorators import action
 from rest_framework import viewsets
 
@@ -14,6 +15,9 @@ from rest_framework.authtoken.models import Token
 from ..models import UserModel
 from rest_framework import status
 from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+
 
 class UserLoginModelViewset(APIView):
     queryset = UserModel.objects.all()
@@ -44,17 +48,17 @@ class UserLoginModelViewset(APIView):
                     'email': userModel.email
                 }, status=status.HTTP_200_OK)
 
-        res = {'status': status.HTTP_400_BAD_REQUEST, 'data': serializer.errors}
+        res = {'status': status.HTTP_400_BAD_REQUEST, 'data': "serializer.errors"}
         return Response(res, status=status.HTTP_400_BAD_REQUEST)
 
 
-class UserModelViewSet(viewsets.ModelViewSet):
+class UserProfileModelViewSet(viewsets.ModelViewSet):
     queryset = UserModel.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserProfileSerializer
 
     @action(detail=True,
             methods=['post'],
-            serializer_class=UserSerializer,
+            serializer_class=UserProfileSerializer,
             authentication_classes=[BasicAuthentication],
             permission_classes=[IsAuthenticated])
     def addaction(self, request, *args, **kwargs):
@@ -65,7 +69,7 @@ class UserModelViewSet(viewsets.ModelViewSet):
 
     @action(detail=True,
             methods=['get'],
-            serializer_class=UserSerializer,
+            serializer_class=UserProfileSerializer,
             authentication_classes=[BasicAuthentication],
             permission_classes=[IsAuthenticated])
     def contents(self, request, *args, **kwargs):
@@ -116,3 +120,25 @@ class RemainingPagesViewSet(viewsets.ModelViewSet):
             permission_classes=[IsAuthenticated])
     def contents(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
+
+
+@csrf_exempt
+def get_profile_from_id(request):
+    if request.method == 'POST':
+        data = list(dict(request.POST).keys())[0]
+        print(" ----------data", data)
+        data = json.loads(data)
+        googleId = data.get("googleId")
+        print(" ----------user", )
+        userModel = get_object_or_404(UserModel, googleId=googleId)
+
+        return JsonResponse({
+            'user_id': userModel.googleId,
+            'email': userModel.email,
+            'imageUrl':userModel.imageUrl,
+            "familyName": userModel.familyName,
+            "givenName": userModel.familyName,
+            "name": userModel.email
+        }, status=status.HTTP_200_OK)
+
+    return JsonResponse({"json_data": ""})

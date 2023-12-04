@@ -17,3 +17,7 @@ class PrintingHistoryAdmin(admin.ModelAdmin):
 @admin.register(RemainingPages)
 class RemainingPagesAdmin(admin.ModelAdmin):
     list_display = ['id', 'googleId', "remainder_pages"]
+
+@admin.register(UploadedFiles)
+class UploadFile(admin.ModelAdmin):
+    list_display = ['author', 'fileName', "filePath", "uploaded_at"]

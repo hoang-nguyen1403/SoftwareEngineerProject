@@ -8,13 +8,16 @@ from rest_framework import routers
 app_name = 'printingRestFullAPI'
 
 router = routers.DefaultRouter()
-router.register('user', views.UserModelViewSet)
+# router.register('user', views.UserLoginModelViewset)
+router.register('userProfile', views.UserProfileModelViewSet)
+
 # router.register('user/<userTokenId>/login/', views.UserLoginModelViewset.as_view(), basename="login")
-# router.register('printing_history', views.PrintingHistoryViewSet)
-# router.register('remaining_pages', views.RemainingPagesViewSet)
+router.register('printing_history', views.PrintingHistoryViewSet)
+router.register('remaining_pages', views.RemainingPagesViewSet)
 
 
 urlpatterns = [
     path('', include(router.urls)),
     path('user/<googleId>/login/', views.UserLoginModelViewset.as_view(), name='login'),
+    path('user/getProfile/', views.get_profile_from_id, name='login'),
 ]

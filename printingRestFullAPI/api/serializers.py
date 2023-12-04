@@ -8,6 +8,11 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ["email", "googleId"]
 
 
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserModel
+        fields = '__all__'
+
 class PrintingHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = PrintingHistory

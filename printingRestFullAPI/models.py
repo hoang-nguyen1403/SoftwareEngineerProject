@@ -1,6 +1,7 @@
 from django.db import models
 # Create your models here.
 from django.conf import settings
+from django import forms
 
 
 class UserModel(models.Model):
@@ -38,3 +39,13 @@ class PrintingHistory(models.Model):
 class RemainingPages(models.Model):
     googleId = models.CharField(max_length=250)
     remainder_pages = models.IntegerField()
+
+
+class UploadedFiles(models.Model):
+    author = models.ForeignKey(
+        UserModel, on_delete=models.CASCADE, db_constraint=False)
+    fileName = models.CharField(max_length=250)
+    filePath = models.FileField(upload_to='users/%Y/%m/%d/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        ordering = ['-uploaded_at']
